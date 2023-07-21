@@ -349,11 +349,9 @@
                         <img src="images/portfolio-first.jpg" alt="portfolio-first">
                     </div>
                     <div class="portfolio-text">
-                        <h2>App Idea</h2>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad ut optio repellat cupiditate
-                            expedita eius dignissimos. Id cumque placeat minima ad laudantium suscipit voluptatem
-                            ducimus</p>
-                        <div class="button"><a href="#"><button><span class="index"> View Project<i
+                        <h2>My Applause Award</h2>
+                        <p>In appreciation for my contribution to the organization.</p>
+                        <div class="button"><a href="pdfs/applause_28feb2023.pdf" target="_blank"><button><span class="index"> View <i
                                             class="gg-arrow-right"></i></span></button></a></div>
                     </div>
                 </div>
@@ -362,11 +360,9 @@
                         <img src="images/portfolio-second.jpg" alt="portfolio-second">
                     </div>
                     <div class="portfolio-text">
-                        <h2>Web Designing</h2>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Id cumque placeat minima ad
-                            laudantium suscipit
-                            voluptatem ducimus. Id cumque placeat minima ad laudantium suscipit voluptatem ducimus</p>
-                        <div class="button"><a href="#"><button><span class="index"> View Project<i
+                        <h2>Best Team Award</h2>
+                        <p>Our Testing team got this award for our continuous work even on weekends and off-hours.</p>
+                        <div class="button"><a href="pdfs/best_team_award_4apr2023.pdf" target="_blank"><button><span class="index"> View <i
                                             class="gg-arrow-right"></i></span></button></a></div>
                     </div>
                 </div>
@@ -376,24 +372,31 @@
                         <img src="images/portfolio-third.jpg" alt="portfolio-third">
                     </div>
                     <div class="portfolio-text">
-                        <h2>UI Designing</h2>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad ut optio repellat cupiditate
-                            expedita eius dignissimos
-                            .. Id cumque placeat minima ad laudantium suscipit voluptatem ducimus</p>
-                        <div class="button"><a href="#"><button><span class="index"> View Project<i
+                        <h2>Applause Award for Team</h2>
+                        <p>Our Team was awarded for our dedication to meet customer requirements within deadlines.</p>
+                        <div class="button"><a href="pdfs/applause_team_award_7june2023.pdf" target="_blank"><button><span class="index"> View <i
                                             class="gg-arrow-right"></i></span></button></a></div>
                     </div>
                 </div>
                 <div class="portfolio portfolio-fourth">
-                    <div class=" portfolio-image">
+                    <div class="portfolio-image">
                         <img src="images/portfolio-fourth.jpg" alt="portfolio-fourth">
                     </div>
                     <div class="portfolio-text">
-                        <h2>Wow Graphics</h2>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ad ut optio repellat cupiditate
-                            expedita eius dignissimos. Id cumque placeat minima ad laudantium suscipit voluptatem
-                            ducimus</p>
-                        <div class="button"><a href="#"><button><span class="index"> View Project<i
+                        <h2>My Feedback Award</h2>
+                        <p>For my continuous feedbacks to improve the project.</p>
+                        <div class="button"><a href="pdfs/feedback_11nov2022.pdf" target="_blank"><button><span class="index"> View <i
+                                            class="gg-arrow-right"></i></span></button></a></div>
+                    </div>
+                </div>
+                <div class="portfolio portfolio-fifth">
+                    <div class="portfolio-image">
+                        <img src="images/portfolio-fifth.jpg" alt="portfolio-fifth">
+                    </div>
+                    <div class="portfolio-text">
+                        <h2>My Continuous Learning Award</h2>
+                        <p>For my continuous learning and personal developement.</p>
+                        <div class="button"><a href="pdfs/Learning_30june2021.pdf" target="_blank"><button><span class="index"> View <i
                                             class="gg-arrow-right"></i></span></button></a></div>
                     </div>
                 </div>
@@ -448,7 +451,7 @@
                     <div class="form-header">
                         Message Me
                     </div>
-                    <form id="myForm" action="#">
+                    <form id="myForm" action="https://formsubmit.co/iamroshan1999@gmail.com" method="POST">
                         <div class="input-line">
                             <input id="name" type="text" placeholder="Name" class="input-name">
                             <input id="email" type="email" placeholder="Email" class="input-name">
@@ -518,7 +521,23 @@
     <script>
         particlesJS("particles", { "particles": { "number": { "value": 40, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#ffffff" }, "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 }, "image": { "src": "img/github.svg", "width": 100, "height": 100 } }, "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } }, "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 6, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 400, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, "retina_detect": true });
     </script>
-
+    <!-- SMTP EMAIL SCRIPTS -->
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script>
+        function sendEmail(){
+            Email.send({
+                Host : "smtp.gmail.com",
+                Username : "",
+                Password : "password",
+                To : 'them@website.com',
+                From : "you@isp.com",
+                Subject : "This is the subject",
+                Body : "And this is the body"
+            }).then(
+              message => alert(message)
+            );
+        }
+    </script>
 </body>
 
 </html>
