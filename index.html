@@ -453,13 +453,13 @@
                     </div>
                     <form id="myForm" action="https://formsubmit.co/b32a1cf3c64a8e2f2e5cb6dad0ecff66" method="POST">
                         <div class="input-line">
-                            <input name="name" type="text" placeholder="Name" class="input-name">
-                            <input name="email" type="email" placeholder="Email" class="input-name">
+                            <input name="name" type="text" placeholder="Name" class="input-name" required>
+                            <input name="email" type="email" placeholder="Email" class="input-name" required>
                         </div>
-                        <input type="text" name="subject" placeholder="subject" class="input-subject">
-                        <textarea name="message" class="input-textarea" placeholder="message"></textarea>
+                        <input type="text" name="subject" placeholder="subject" class="input-subject" required>
+                        <textarea name="message" class="input-textarea" placeholder="message" required></textarea>
                         <button type="submit" id="submit" value="send">Submit</button>
-                        <input type="hidden" name="_next" value="thankyou.html">
+                        <input type="hidden" name="_next" value="./thankyou.html">
                         <input type="hidden" name="_subject" value="NEW GitHub Contact Request!!">
                         <input type="hidden" name="_autoresponse" value=
                             "Hello there, first of all - Thank you.
