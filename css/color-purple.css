@@ -34,19 +34,19 @@
   .service:hover .service-img img{
     box-shadow:0px 0px 0px 400px #481380 ;
 }
-.html-progress{
+.devops-progress{
     background: #481380;
 }
-.js-progress{
+.selenium-progress{
     background: #481380;
 }
-.adobe-progress{
+.apache-progress{
     background: #481380;
 }
-.php-progress{
+.python-progress{
     background: #481380;
 }
-.jquery-progress{
+.blender-progress{
     background: #481380;
 }
 .seo-progress{
