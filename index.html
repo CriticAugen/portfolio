@@ -1,530 +1,884 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CriticAugen - Personal Portfolio of Roshan Srivastava" />
-    <meta name="keywords"
-        content="blog, business card, creative, creative portfolio, cv theme, online resume, personal, portfolio, professional cv, responsive portfolio, resume, resume theme, vcard" />
-    <meta name="author" content="Roshan Srivastava" />
-    <title>CriticAugen</title>
-    <!--favicon-img-->
-    <link rel="icon" type="image/png" href="images/favicon.png">
-    <!--favicon-img-->
-    <!--main css file should not be removed -->
-    <link rel="stylesheet" href="css/index.css">
-    <!--main css file-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+    <title>Roshan Srivastava — Quality Engineer → Developer</title>
+    <meta name="description" content="Roshan Srivastava — QE transitioning into Dev. Crypto/Security @ ServiceNow.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        /* ── Reset & Base ──────────────────────────────────────── */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #0a0a0b;
+            color: #e4e4e7;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+        ::selection { background: #6d28d9; color: #fff; }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        /* ── Utility ───────────────────────────────────────────── */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .accent { color: #a78bfa; }
+        .accent-green { color: #34d399; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
+        .section { padding: 100px 0; }
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #a78bfa;
+            margin-bottom: 12px;
+        }
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 40px;
+            line-height: 1.3;
+        }
+
+        /* ── Animated Background Grid ──────────────────────────── */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image:
+                linear-gradient(rgba(167, 139, 250, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(167, 139, 250, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .bg-glow {
+            position: fixed;
+            width: 600px; height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.15;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .bg-glow-1 { top: -200px; right: -200px; background: #6d28d9; }
+        .bg-glow-2 { bottom: -200px; left: -200px; background: #059669; }
+
+        /* ── Nav ───────────────────────────────────────────────── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 18px 0;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 11, 0.8);
+            border-bottom: 1px solid rgba(167, 139, 250, 0.08);
+            transition: all 0.3s;
+        }
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: -0.5px;
+        }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #a1a1aa;
+            transition: color 0.2s;
+            position: relative;
+        }
+        .nav-links a:hover { color: #a78bfa; }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0; right: 0;
+            height: 2px;
+            background: #a78bfa;
+            transform: scaleX(0);
+            transition: transform 0.2s;
+        }
+        .nav-links a:hover::after { transform: scaleX(1); }
+
+        /* Mobile nav toggle */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .nav-toggle span {
+            width: 22px; height: 2px;
+            background: #e4e4e7;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        /* ── Hero ──────────────────────────────────────────────── */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            background: rgba(167, 139, 250, 0.1);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: #a78bfa;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        .hero-tag .dot {
+            width: 8px; height: 8px;
+            background: #34d399;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .hero-name {
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: #a1a1aa;
+            margin-bottom: 32px;
+            max-width: 480px;
+        }
+        .hero-subtitle strong { color: #e4e4e7; font-weight: 600; }
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.25s;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary {
+            background: #6d28d9;
+            color: #fff;
+        }
+        .btn-primary:hover { background: #7c3aed; transform: translateY(-2px); box-shadow: 0 8px 30px rgba(109, 40, 217, 0.3); }
+        .btn-outline {
+            background: transparent;
+            color: #a78bfa;
+            border: 1px solid rgba(167, 139, 250, 0.3);
+        }
+        .btn-outline:hover { background: rgba(167, 139, 250, 0.08); transform: translateY(-2px); }
+
+        /* Hero image */
+        .hero-image-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .hero-image-wrap::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, rgba(109, 40, 217, 0.7), rgba(5, 150, 105, 0.5));
+            z-index: 0;
+            filter: blur(14px);
+            opacity: 0.65;
+            transition: opacity 0.3s;
+        }
+        .hero-image-wrap:hover::before {
+            opacity: 0.95;
+        }
+        .hero-image-inner {
+            position: relative;
+            z-index: 1;
+            width: 350px;
+            height: 350px;
+            border-radius: 26px;
+            background: radial-gradient(circle at 50% 25%, rgba(109, 40, 217, 0.28) 0%, rgba(16, 16, 22, 0.96) 80%);
+            border: 1px solid rgba(167, 139, 250, 0.25);
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65);
+        }
+        .hero-image-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .hero-image-wrap:hover .hero-image-inner img {
+            transform: scale(1.03);
+        }
+
+        /* ── About ─────────────────────────────────────────────── */
+        #about { border-top: 1px solid rgba(255,255,255,0.05); }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+        .about-text p {
+            color: #a1a1aa;
+            margin-bottom: 16px;
+            font-size: 0.95rem;
+        }
+        .about-text p strong { color: #e4e4e7; }
+        .stats-row {
+            display: flex;
+            gap: 40px;
+            margin-top: 32px;
+        }
+        .stat h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #a78bfa;
+        }
+        .stat p {
+            font-size: 0.8rem;
+            color: #71717a;
+            margin-top: 4px;
+        }
+
+        /* ── Journey / Timeline ──────────────────────────────── */
+        #journey { border-top: 1px solid rgba(255,255,255,0.05); }
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px; top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #6d28d9, #059669);
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 48px;
+            padding: 24px 28px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            transition: all 0.3s;
+        }
+        .timeline-item:hover {
+            background: rgba(167, 139, 250, 0.04);
+            border-color: rgba(167, 139, 250, 0.15);
+            transform: translateX(6px);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -40px; top: 30px;
+            width: 16px; height: 16px;
+            background: #0a0a0b;
+            border: 3px solid #6d28d9;
+            border-radius: 50%;
+        }
+        .timeline-item.current::before {
+            background: #6d28d9;
+            box-shadow: 0 0 12px rgba(109, 40, 217, 0.5);
+        }
+        .timeline-date {
+            font-size: 0.75rem;
+            color: #a78bfa;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+        .timeline-company {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .timeline-role {
+            font-size: 0.85rem;
+            color: #a1a1aa;
+            margin-bottom: 10px;
+        }
+        .timeline-desc {
+            font-size: 0.85rem;
+            color: #71717a;
+            line-height: 1.6;
+        }
+
+        /* ── Skills ────────────────────────────────────────────── */
+        #skills { border-top: 1px solid rgba(255,255,255,0.05); }
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        .skill-card {
+            padding: 28px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 14px;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .skill-card:hover {
+            border-color: rgba(167, 139, 250, 0.2);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+        }
+        .skill-card-icon {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+        }
+        .skill-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .skill-card p {
+            font-size: 0.85rem;
+            color: #71717a;
+            min-height: 44px;
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            min-height: 64px;
+            align-content: flex-start;
+        }
+        .skill-tag {
+            padding: 4px 10px;
+            background: rgba(167, 139, 250, 0.08);
+            border: 1px solid rgba(167, 139, 250, 0.12);
+            border-radius: 6px;
+            font-size: 0.72rem;
+            color: #a78bfa;
+            font-weight: 500;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ── Contact ──────────────────────────────────────────── */
+        #contact { border-top: 1px solid rgba(255,255,255,0.05); }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .contact-text p {
+            color: #a1a1aa;
+            font-size: 0.95rem;
+            margin-bottom: 32px;
+        }
+        .contact-links {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 12px;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+        .contact-link:hover {
+            border-color: rgba(167, 139, 250, 0.2);
+            background: rgba(167, 139, 250, 0.04);
+            transform: translateX(6px);
+        }
+        .contact-link-icon {
+            width: 40px; height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(167, 139, 250, 0.1);
+            border-radius: 10px;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        .contact-link-text span {
+            display: block;
+            font-size: 0.72rem;
+            color: #71717a;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        /* Contact form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            color: #e4e4e7;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+            outline: none;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: rgba(167, 139, 250, 0.4);
+        }
+        .contact-form textarea { min-height: 120px; resize: vertical; }
+        .contact-form .btn { width: fit-content; }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        /* ── Footer ────────────────────────────────────────────── */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+        footer p {
+            font-size: 0.8rem;
+            color: #52525b;
+        }
+        footer .accent { font-weight: 600; }
+
+        /* ── Scroll reveal animation ──────────────────────────── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Responsive ────────────────────────────────────────── */
+        @media (max-width: 768px) {
+            .hero-grid,
+            .about-grid,
+            .contact-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .hero-image-wrap { order: -1; }
+            .hero-image-inner { width: 260px; height: 260px; border-radius: 20px; }
+            .nav-links { display: none; }
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%; left: 0; right: 0;
+                background: rgba(10, 10, 11, 0.95);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            .nav-toggle { display: flex; }
+            .stats-row { gap: 24px; }
+            .form-row { grid-template-columns: 1fr; }
+            .section { padding: 70px 0; }
+        }
+    </style>
 </head>
-
 <body>
-    <!--contains all the div-->
-    <div id="all">
-        <!--mouse  follower-->
-        <div class="cursor"></div>
-        <!--mouse  follower-->
-        <!--loader-->
-        <div id="loader">
-            <span class="color">CriticAugen</span>
-        </div>
-        <!--loader-end-->
-        <!--link-screen-->
-        <div id="breaker">
-        </div>
-        <div id="breaker-two">
-        </div>
-        <!--link-screen-->
-        <!--Main-Section-->
-        <!--Navigator-fullscreen-->
-        <div id="navigation-content">
-            <div class="logo">
-                <img src="images/critic-logo.png" alt="logo">
-            </div>
-            <div class="navigation-close">
-                <span class="close-first"></span>
-                <span class="close-second"></span>
-            </div>
-            <div class="navigation-links">
-                <a href="#" data-text="HOME" id="home-link">HOME</a>
-                <a href="#" data-text="ABOUT" id="about-link">ABOUT</a>
-                <a href="#" data-text="PORTFOLIO" id="awards-link">PORTFOLIO</a>
-                <a href="#" data-text="CONTACT" id="contact-link">CONTACT</a>
-            </div>
-        </div>
-        <!--Navigator-Fullscreen END-->
-        <!--Home Page-->
-        <!--Menubar-->
-        <div id="navigation-bar">
-            <img src="images/critic-logo.png" alt="logo">
-            <div class="menubar">
-                <span class="first-span"></span>
-                <span class="second-span"></span>
-                <span class="third-span"></span>
-            </div>
-        </div>
-        <!--Menubar End-->
-        <!--Header-->
-        <div id="header">
-            <div id="particles"></div>
-            <!--Social Media Links-->
-            <div class="social-media-links">
-                <a href="https://www.instagram.com/criticaugen/"><img src="images/instagram logo.png" class="social-media"
-                        alt="instagram-logo"></a><!--Your instagram homepage link inser in place of "#"-->
-                <a href="https://www.facebook.com/criticaugen/"><img src="images/facebook logo.png" class="social-media" alt="facebook-logo"></a>
-                <a href="https://www.linkedin.com/in/criticaugen/"><img src="images/linkedin logo.png" class="social-media" alt="linkedin-logo"></a>
-                <a href="https://twitter.com/CriticAugen"><img src="images/twitter logo.png" class="social-media" alt="twitter-logo"></a>
+    <!-- Background -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
 
-            </div>
-            <!--Social Media Links end-->
-            <div class="header-content">
-                <div class="header-content-box">
-                    <div class="firstline"><span class="color">Roshan </span>Srivastava</div>
-                    <div class="secondline">
-                        I'm 
-                        <span class="txt-rotate color" data-period="600"
-                            data-rotate='[ " DevOps Engineer.", " Automation Tester.", " Performance Tester." ]'></span>
-                        <span class="slash">|</span>
-                    </div>
-                    <div class="contact">
-                        <a href="Mailto:iamroshan1999@gmail.com"><img src="images/mail.png" alt="email-pic"
-                                class="contactpic"></a><!--Your email Id write in place of "#"-->
-                        <a href="Tel:+918200832289"><img src="images/call.png" alt="phone-pic"
-                                class="contactpic"></a><!--Your telephone number Id write in place of "#"-->
-                    </div>
-                </div>
-            </div>
-            <!--header image-->
-            <div class="header-image">
-                <img src="images/man.jpg" alt="logo">
-            </div>
-            <!--header image end-->
+    <!-- Nav -->
+    <nav>
+        <div class="container">
+            <a href="#hero" class="nav-logo"><span class="accent">R</span>oshan<span class="mono" style="color:#71717a;font-weight:400">.</span></a>
+            <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#journey">Journey</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
-        <!--Header End-->
-        <!--HomePage End-->
-        <!--Main-Section End-->
-        <!--about-->
-        <div id="about">
-            <div class="color-changer">
-                <div class="color-panel">
-                    <img src="images/gear.png" alt="">
+    </nav>
+
+    <!-- Hero -->
+    <section id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div>
+                    <div class="hero-tag">
+                        <span class="dot"></span>
+                        Open to opportunities
+                    </div>
+                    <h1 class="hero-name">
+                        Hi, I'm<br>
+                        <span class="accent">Roshan</span> Srivastava
+                    </h1>
+                    <p class="hero-subtitle">
+                        <strong>SQE IC2 → Developer</strong> at ServiceNow, working in 
+                        <strong>Crypto &amp; Security</strong>. Building the bridge from testing to engineering.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="#contact" class="btn btn-primary">Get In Touch ↗</a>
+                        <a href="#journey" class="btn btn-outline">My Journey →</a>
+                    </div>
                 </div>
-                <div class="color-selector">
-                    <div class="heading">Custom Colors</div>
-                    <div class="colors">
-                        <ul>
-                            <li>
-                                <a href="#0" class="color-red " title="color-red"></a>
-                            </li>
-                            <li>
-                                <a href="#0" class="color-purple" title="color-purple"></a>
-                            </li>
-                            <li>
-                                <a href="#0" class="color-malt" title="color-malt"></a>
-                            </li>
-                            <li>
-                                <a href="#0" class="color-green" title="color-green"></a>
-                            </li>
-                            <li>
-                                <a href="#0" class="color-blue" title="color-blue"></a>
-                            </li>
-                            <li>
-                                <a href="#0" class="color-orange" title="color-orange"></a>
-                            </li>
-                        </ul>
+                <div class="hero-image-wrap">
+                    <div class="hero-image-inner">
+                        <img src="images/roshan.png" alt="Roshan Srivastava">
                     </div>
                 </div>
             </div>
-            <!--about content-->
-            <div id="about-content">
-                <div class="about-header">
-                    About <span class="color">Me</span>
-                    <span class="header-caption">Get to Know <span class="color"> me.</span></span>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <p class="section-label">About Me</p>
+                    <h2 class="section-title">Civil Engineer by degree.<br><span class="accent">Software Engineer</span> by choice.</h2>
+                    <p>
+                        I graduated with a <strong>B.Tech in Civil Engineering</strong>, but quickly realized my true calling lay in technology. In <strong>October 2020</strong>, I transitioned into IT — starting as a tester at TCS and steadily progressing through automation and platform engineering.
+                    </p>
+                    <p>
+                        Across three companies (TCS, Volansys, and ServiceNow), I've evolved from quality assurance and SDET roles into <strong>core development — focusing on Crypto and Security</strong> at ServiceNow. I've been actively building dev-side features and tools for over a year, with deep hands-on expertise in Java, Python, and cryptography.
+                    </p>
+                    <p>
+                        I thrive at the intersection of <strong>quality and engineering</strong> — I write resilient code because I've spent years understanding precisely how systems break.
+                    </p>
                 </div>
-                <div class="about-main">
-                    <div class="about-first-paragraph wow">
-                        <!--about description-->
-                        <span class="about-first-line">
-                            I'm a
-                            <span class="color">Civil engineer turned IT developer,</span>
-                            from Vadodara, INDIA.</span>
-                        <br>
-                        <span class="about-second-line">Ex-tester, now DevOps engineer, aspiring full-stack. 
-                            Passionate learner, problem-solver, embracing challenges with enthusiasm.</span>
-                        <div class="cv">
-                            <a href="pdfs/Roshan_Resume.pdf"><button>Download CV</button></a>
+                <div class="reveal" style="display:flex;flex-direction:column;justify-content:center;">
+                    <div class="stats-row">
+                        <div class="stat">
+                            <h3>6+</h3>
+                            <p>Years in Tech</p>
+                        </div>
+                        <div class="stat">
+                            <h3>3</h3>
+                            <p>Companies</p>
+                        </div>
+                        <div class="stat">
+                            <h3>1+</h3>
+                            <p>Year in Dev</p>
                         </div>
                     </div>
-                    <!--about picture-->
-                    <div class="about-img">
-                        <img src="images/about.jpg" alt="Your Image">
+                    <div style="margin-top:40px;padding:24px;background:rgba(52,211,153,0.05);border:1px solid rgba(52,211,153,0.12);border-radius:14px;">
+                        <p style="font-size:0.85rem;color:#a1a1aa;margin:0;">
+                            <span class="accent-green" style="font-weight:600;">Currently:</span> SQE IC2 in Crypto/Security at ServiceNow (Hyderabad) — contributing to cryptographic operations, security services, and platform dev tooling.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey -->
+    <section id="journey" class="section">
+        <div class="container">
+            <p class="section-label reveal">Career Journey</p>
+            <h2 class="section-title reveal">From <span class="accent">tester</span> to <span class="accent">builder</span>.</h2>
+            <div class="timeline">
+                <div class="timeline-item current reveal">
+                    <div class="timeline-date">Jul 2024 — Present · Hyderabad (Hybrid)</div>
+                    <div class="timeline-company">ServiceNow</div>
+                    <div class="timeline-role">SQE IC2 — Crypto / Security</div>
+                    <div class="timeline-desc">
+                        Working in the core Crypto/Security domain. Developing dev-side features, platform tooling, and robust automated frameworks using Java and API Testing. Actively doing hands-on development work for over 1 year while championing security best practices.
                     </div>
                 </div>
 
-            </div>
-            <!--services start-->
-            <div id="services">
-                <div class="color-changer">
-                    <div class="color-panel">
-                        <img src="images/gear.png" alt="">
-                    </div>
-                    <div class="color-selector">
-                        <div class="heading">Custom Colors</div>
-                        <div class="colors">
-                            <ul>
-                                <li>
-                                    <a href="#0" class="color-red " title="color-red"></a>
-                                </li>
-                                <li>
-                                    <a href="#0" class="color-purple" title="color-purple"></a>
-                                </li>
-                                <li>
-                                    <a href="#0" class="color-malt" title="color-malt"></a>
-                                </li>
-                                <li>
-                                    <a href="#0" class="color-green" title="color-green"></a>
-                                </li>
-                                <li>
-                                    <a href="#0" class="color-blue" title="color-blue"></a>
-                                </li>
-                                <li>
-                                    <a href="#0" class="color-orange" title="color-orange"></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--services header-->
-                <div class="services-heading wow">
-                    What <span class="color">YOU</span> Get?
-                </div>
-                <!--services header end-->
-                <!--services content-->
-                <div class="services-content">
-                    <div class="service-one service wow">
-                        <div class="service-img">
-                            <img src="images/coding.png" alt="service-one">
-                        </div>
-                        <div class="service-description">
-                            <h2>Coding</h2>
-                            <p>Adaptable IT developer with a civil engineering background, skilled in problem-solving and delivering efficient coding solutions.</p>
-                        </div>
-                    </div>
-                    <div class="service-two service wow">
-                        <div class="service-img">
-                            <img src="images/instagram.png" alt="service-two">
-                        </div>
-                        <div class="service-description">
-                            <h2>Social Media</h2>
-                            <p>Creative content creator infusing IT insights, delivering captivating campaigns, and elevating brand presence across social platforms.</p>
-                        </div>
-                    </div>
-                    <div class="service-three service wow">
-                        <div class="service-img">
-                            <img src="images/bulb.png" alt="service-three">
-                        </div>
-                        <div class="service-description">
-                            <h2>Creative Design</h2>
-                            <p>Innovative IT designer, fusing civil engineering acumen with creative flair to produce visually captivating digital solutions.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--services content end-->
-            <!--services end-->
-            <div id="skills">
-                <div class="skills-header">
-                    My <span class="color"> Skills</span>
-                </div>
-                <div class="skills-content " style="text-align: center;">
-                    <div class="skill-devops skill">
-                        <div class="skill-text">
-                            <div class="devops">
-                                Selenium Java Automation
-                            </div>
-                        </div>
-                        <div class="devops-prog wow prog">
-                            <div class="selenium-progress wow">80%</div>
-                        </div>
-                    </div>
-                    <div class="skill-devops skill">
-                        <div class="skill-text">
-                            <div class="devops">
-                                Apache JMeter Performace
-                            </div>
-                        </div>
-                        <div class="devops-prog wow prog">
-                            <div class="apache-progress wow">80%</div>
-                        </div>
-                    </div>
-                    <div class="skill-devops skill">
-                        <div class="skill-text">
-                            <div class="devops">
-                                Python
-                            </div>
-                        </div>
-                        <div class="devops-prog wow prog">
-                            <div class="python-progress wow">80%</div>
-                        </div>
-                    </div>
-                    <div class="skill-devops skill">
-                        <div class="skill-text">
-                            <div class="devops">
-                                DevOps
-                            </div>
-                        </div>
-                        <div class="devops-prog wow prog">
-                            <div class="devops-progress wow">75%</div>
-                        </div>
-                    </div>
-                    <div class="skill-devops skill">
-                        <div class="skill-text">
-                            <div class="devops">
-                                Blender 3D Modelling
-                            </div>
-                        </div>
-                        <div class="devops-prog wow prog">
-                            <div class="blender-progress wow">70%</div>
-                        </div>
-                    </div>
-                    <div class="skill-devops skill">
-                        <div class="skill-text">
-                            <div class="devops">
-                                SEO
-                            </div>
-                        </div>
-                        <div class="devops-prog wow prog">
-                            <div class="seo-progress wow">70%</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--copyright-section You Can Remove After Downloading-->
-            <div class="footer">
-                <div class="footer-text">
-                    <img src="./images/copyright.png" alt="copyright-img" class="images" height="14px"> CriticAugen
-                </div>
-            </div>
-            <!--copyright-section-->
-        </div>
-        <!--about end-->
-        <!--portfolio-->
-        <div id="portfolio">
-            <div class="color-changer">
-                <div class="color-panel">
-                    <img src="images/gear.png" alt="">
-                </div>
-                <div class="color-selector">
-                    <div class="heading">Custom Colors</div>
-                    <div class="colors">
-                        <ul>
-                            <li>
-                                <a href="#0" class="color-red " title="color-red"></a>
-                            </li>
-                            <li>
-                                <a href="#0" class="color-purple" title="color-purple"></a>
-                            </li>
-                            <li>
-                                <a href="#0" class="color-malt" title="color-malt"></a>
-                            </li>
-                            <li>
-                                <a href="#0" class="color-green" title="color-green"></a>
-                            </li>
-                            <li>
-                                <a href="#0" class="color-blue" title="color-blue"></a>
-                            </li>
-                            <li>
-                                <a href="#0" class="color-orange" title="color-orange"></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="portfolio-header"> <span class="color"> My </span> Portfolio
-                <span class="header-caption"> Some Of My <span class="color"> Achievements</span></span>
-            </div>
-            <div id="portfolio-content">
-                <div class="portfolio portfolio-first">
-                    <div class="portfolio-image">
-                        <img src="images/portfolio-first.jpg" alt="portfolio-first">
-                    </div>
-                    <div class="portfolio-text">
-                        <h2>My Applause Award</h2>
-                        <p>In appreciation for my contribution to the organization.</p>
-                        <div class="button"><a href="pdfs/applause_28feb2023.pdf" target="_blank"><button><span class="index"> View <i
-                                            class="gg-arrow-right"></i></span></button></a></div>
-                    </div>
-                </div>
-                <div class="portfolio portfolio-second">
-                    <div class="portfolio-image">
-                        <img src="images/portfolio-second.jpg" alt="portfolio-second">
-                    </div>
-                    <div class="portfolio-text">
-                        <h2>Best Team Award</h2>
-                        <p>Our Testing team got this award for our continuous work even on weekends and off-hours.</p>
-                        <div class="button"><a href="pdfs/best_team_award_4apr2023.pdf" target="_blank"><button><span class="index"> View <i
-                                            class="gg-arrow-right"></i></span></button></a></div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-date">Feb 2024 — Jun 2024 · 5 mos</div>
+                    <div class="timeline-company">Volansys <span style="color:#71717a;font-size:0.82rem;font-weight:400;">(An ACL Digital Company)</span></div>
+                    <div class="timeline-role">SDET · Ahmedabad, Gujarat</div>
+                    <div class="timeline-desc">
+                        Architected test automation suites with Python and API Testing for interconnected devices and software solutions. Drove CI/CD reliability and fast turnaround test validation.
                     </div>
                 </div>
 
-                <div class="portfolio portfolio-third">
-                    <div class="portfolio-image">
-                        <img src="images/portfolio-third.jpg" alt="portfolio-third">
-                    </div>
-                    <div class="portfolio-text">
-                        <h2>Applause Award for Team</h2>
-                        <p>Our Team was awarded for our dedication to meet customer requirements within deadlines.</p>
-                        <div class="button"><a href="pdfs/applause_team_award_7june2023.pdf" target="_blank"><button><span class="index"> View <i
-                                            class="gg-arrow-right"></i></span></button></a></div>
-                    </div>
-                </div>
-                <div class="portfolio portfolio-fourth">
-                    <div class="portfolio-image">
-                        <img src="images/portfolio-fourth.jpg" alt="portfolio-fourth">
-                    </div>
-                    <div class="portfolio-text">
-                        <h2>My Feedback Award</h2>
-                        <p>For my continuous feedbacks to improve the project.</p>
-                        <div class="button"><a href="pdfs/feedback_11nov2022.pdf" target="_blank"><button><span class="index"> View <i
-                                            class="gg-arrow-right"></i></span></button></a></div>
-                    </div>
-                </div>
-                <div class="portfolio portfolio-fifth">
-                    <div class="portfolio-image">
-                        <img src="images/portfolio-fifth.jpg" alt="portfolio-fifth">
-                    </div>
-                    <div class="portfolio-text">
-                        <h2>My Continuous Learning Award</h2>
-                        <p>For my continuous learning and personal developement.</p>
-                        <div class="button"><a href="pdfs/Learning_30june2021.pdf" target="_blank"><button><span class="index"> View <i
-                                            class="gg-arrow-right"></i></span></button></a></div>
-                    </div>
-                </div>
-            </div>
-            <!--copyright-section You Can Remove After Downloading-->
-            <div class="footer">
-                <div class="footer-text">
-                    <img src="./images/copyright.png" alt="copyright-img" class="images" height="14px"> CriticAugen
-                </div>
-            </div>
-            <!--copyright-section-->
-        </div>
-        <!--portfolio end-->
-        <!--contact-->
-        <div id="contact">
-            <div class="color-changer">
-                <div class="color-panel">
-                    <img src="images/gear.png" alt="">
-                </div>
-                <div class="color-selector">
-                    <div class="heading">Custom Colors</div>
-                    <div class="colors">
-                        <ul>
-                            <li>
-                                <a href="#0" class="color-red " title="color-red"></a>
-                            </li>
-                            <li>
-                                <a href="#0" class="color-purple" title="color-purple"></a>
-                            </li>
-                            <li>
-                                <a href="#0" class="color-malt" title="color-malt"></a>
-                            </li>
-                            <li>
-                                <a href="#0" class="color-green" title="color-green"></a>
-                            </li>
-                            <li>
-                                <a href="#0" class="color-blue" title="color-blue"></a>
-                            </li>
-                            <li>
-                                <a href="#0" class="color-orange" title="color-orange"></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-header">Contact <span class="color"> Me</span>
-                <div class="contact-header-caption"> <span class="color"> Get</span> In Touch.</div>
-            </div>
-            <div class="contact-content">
-                <!--Contact form-->
-                <div class="contact-form">
-                    <div class="form-header">
-                        Message Me
-                    </div>
-                    <form id="myForm" action="https://formsubmit.co/b32a1cf3c64a8e2f2e5cb6dad0ecff66" method="POST">
-                        <div class="input-line">
-                            <input name="name" type="text" placeholder="Name" class="input-name" required>
-                            <input name="email" type="email" placeholder="Email" class="input-name" required>
+                <div class="timeline-item reveal">
+                    <div class="timeline-date">Oct 2020 — Feb 2024 · 3 yrs 5 mos</div>
+                    <div class="timeline-company">Tata Consultancy Services (TCS)</div>
+                    
+                    <div style="margin-top: 14px; padding-left: 14px; border-left: 2px solid rgba(167, 139, 250, 0.4);">
+                        <div class="timeline-role" style="color: #e4e4e7; font-weight: 600;">System Engineer</div>
+                        <div class="timeline-date" style="font-size: 0.75rem; color: #a1a1aa; text-transform: none; margin-bottom: 4px;">Oct 2022 — Feb 2024 · 1 yr 5 mos · Gandhinagar, Gujarat</div>
+                        <div class="timeline-desc">
+                            Spearheaded test automation with Selenium WebDriver, Java, and Jira. Designed modular test frameworks, executed regression cycles, and collaborated directly with developer squads.
                         </div>
-                        <input type="text" name="subject" placeholder="subject" class="input-subject" required>
-                        <textarea name="message" class="input-textarea" placeholder="message" required></textarea>
-                        <button type="submit" id="submit" value="send">Submit</button>
-                        <input type="hidden" name="_template" value="box">
-                        <input type="hidden" name="_captcha" value="false">
-                        <input type="hidden" name="_next" value="https://criticaugen.github.io/thanks/">
-                        <input type="hidden" name="_subject" value="NEW GitHub Contact Request!!">
-                    </form>
+                    </div>
 
-                </div>
-                <!--Contact form-->
-                <!--Contact information-->
-                <div class="contact-info">
-                    <div class="contact-info-header">
-                        Contact Info
-                    </div>
-                    <div class="contact-info-content">
-                        <div class="contect-info-content-line">
-                            <img src="./images/icon-name.png" class="icon" alt="name-icon">
-                            <div class="contact-info-icon-text">
-                                <h6>Name</h6>
-                                <p>Roshan Srivastava</p>
-                            </div>
-                        </div>
-                        <div class="contect-info-content-line">
-                            <img src="./images/icon-location.png" class="icon" alt="location-icon">
-                            <div class="contact-info-icon-text">
-                                <h6>Location</h6>
-                                <p>Vadodara, INDIA</p>
-                            </div>
-                        </div>
-                        <div class="contect-info-content-line">
-                            <img src="./images/icon-phone.png" class="icon" alt="phone-icon">
-                            <div class="contact-info-icon-text">
-                                <h6>Call</h6>
-                                <p>+918200832289</p>
-                            </div>
-                        </div>
-
-                        <div class="contect-info-content-line">
-                            <img src="./images/icon-email.png" class="icon" alt="email-icon">
-                            <div class="contact-info-icon-text">
-                                <h6>Email</h6>
-                                <p>iamroshan1999@gmail.com</p>
-                            </div>
+                    <div style="margin-top: 16px; padding-left: 14px; border-left: 2px solid rgba(167, 139, 250, 0.2);">
+                        <div class="timeline-role" style="color: #e4e4e7; font-weight: 600;">Assistant System Engineer</div>
+                        <div class="timeline-date" style="font-size: 0.75rem; color: #a1a1aa; text-transform: none; margin-bottom: 4px;">Oct 2020 — Oct 2022 · 2 yrs 1 mo · Ahmedabad, Gujarat</div>
+                        <div class="timeline-desc">
+                            Began career transition from Civil Engineering into Software Engineering. Mastered software testing fundamentals, quality standards, and foundational test automation.
                         </div>
                     </div>
-                    <!--Contact information end-->
                 </div>
             </div>
-            <!--copyright-section You Can Remove After Downloading-->
-            <div class="footer">
-                <div class="footer-text">
-                    <img src="./images/copyright.png" alt="copyright-img" class="images" height="14px"> CriticAugen
-                </div>
-            </div>
-            <!--copyright-section-->
         </div>
-        <!--contact end-->
-    </div>
-    <!--all the divisions-->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/particles.js"></script>
-    <script src="js/particles.min.js"></script>
-    <script src="js/index.js"></script>
-    <!--particles script-->
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+        <div class="container">
+            <p class="section-label reveal">Skills & Toolkit</p>
+            <h2 class="section-title reveal">What I <span class="accent">work with</span>.</h2>
+            <div class="skills-grid">
+                <div class="skill-card reveal">
+                    <div class="skill-card-icon">🔐</div>
+                    <h3>Crypto & Security</h3>
+                    <p>Building and testing cryptographic services and security infrastructure at scale.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Cryptography</span>
+                        <span class="skill-tag">PKI</span>
+                        <span class="skill-tag">Security APIs</span>
+                        <span class="skill-tag">TLS/SSL</span>
+                    </div>
+                </div>
+                <div class="skill-card reveal">
+                    <div class="skill-card-icon">⚙️</div>
+                    <h3>Development</h3>
+                    <p>Writing production code, internal tools, and platform features.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Spring Boot</span>
+                    </div>
+                </div>
+                <div class="skill-card reveal">
+                    <div class="skill-card-icon">🧪</div>
+                    <h3>Quality Engineering</h3>
+                    <p>Deep expertise in test strategy, automation frameworks, and performance testing.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Selenium</span>
+                        <span class="skill-tag">JMeter</span>
+                        <span class="skill-tag">TestNG</span>
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">API Testing</span>
+                    </div>
+                </div>
+                <div class="skill-card reveal">
+                    <div class="skill-card-icon">🛠️</div>
+                    <h3>DevOps & Tools</h3>
+                    <p>Comfortable with the full lifecycle from code to deployment.</p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Jenkins</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">ServiceNow Platform</span>
+                        <span class="skill-tag">CI/CD Pipelines</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+        <div class="container">
+            <p class="section-label reveal">Get in Touch</p>
+            <h2 class="section-title reveal">Let's <span class="accent">connect</span>.</h2>
+            <div class="contact-grid">
+                <div class="contact-text reveal">
+                    <p>
+                        I'm actively looking for <strong>developer roles</strong> where I can bring my unique blend of QE rigor and dev skills. 
+                        If you have an opportunity, a question, or just want to say hi — I'm all ears.
+                    </p>
+                    <div class="contact-links">
+                        <a href="mailto:iamroshan1999@gmail.com" class="contact-link">
+                            <div class="contact-link-icon">✉️</div>
+                            <div class="contact-link-text">
+                                <span>Email</span>
+                                iamroshan1999@gmail.com
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/criticaugen/" class="contact-link" target="_blank">
+                            <div class="contact-link-icon">💼</div>
+                            <div class="contact-link-text">
+                                <span>LinkedIn</span>
+                                linkedin.com/in/criticaugen
+                            </div>
+                        </a>
+                        <a href="https://github.com/CriticAugen" class="contact-link" target="_blank">
+                            <div class="contact-link-icon">🐙</div>
+                            <div class="contact-link-text">
+                                <span>GitHub</span>
+                                github.com/CriticAugen
+                            </div>
+                        </a>
+                        <a href="tel:+918200832289" class="contact-link">
+                            <div class="contact-link-icon">📱</div>
+                            <div class="contact-link-text">
+                                <span>Phone</span>
+                                +91 8200 832 289
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <form class="contact-form reveal" id="contactForm" action="https://formsubmit.co/iamroshan1999@gmail.com" method="POST">
+                    <div class="form-row">
+                        <input type="text" name="name" id="formName" placeholder="Your Name" required>
+                        <input type="email" name="email" id="formEmail" placeholder="Your Email" required>
+                    </div>
+                    <input type="text" name="subject" id="formSubject" placeholder="Subject" required>
+                    <textarea name="message" id="formMessage" placeholder="Your message..." required></textarea>
+                    <input type="hidden" name="_template" value="box">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://criticaugen.github.io/portfolio/?sent=1">
+                    <input type="hidden" name="_subject" value="New Portfolio Contact from Website!">
+                    <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:6px;">
+                        <button type="submit" id="submitBtn" class="btn btn-primary">Send Message ↗</button>
+                        <button type="button" id="mailtoBtn" class="btn btn-outline" style="font-size:0.85rem; padding:11px 20px;">Open in Mail Client ✉️</button>
+                    </div>
+                    <div id="formStatus" style="display:none; padding:12px 16px; border-radius:8px; font-size:0.88rem; margin-top:10px;"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Built with focus &amp; determination · <span class="accent">Roshan Srivastava</span> · 2026</p>
+        </div>
+    </footer>
+
+    <!-- JS: scroll reveal -->
     <script>
-        particlesJS("particles", { "particles": { "number": { "value": 40, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#ffffff" }, "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" }, "polygon": { "nb_sides": 5 }, "image": { "src": "img/github.svg", "width": 100, "height": 100 } }, "opacity": { "value": 0.5, "random": false, "anim": { "enable": false, "speed": 1, "opacity_min": 0.1, "sync": false } }, "size": { "value": 3, "random": true, "anim": { "enable": false, "speed": 40, "size_min": 0.1, "sync": false } }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 6, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, "attract": { "enable": false, "rotateX": 600, "rotateY": 1200 } } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 400, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, "retina_detect": true });
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Close mobile nav on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+
+        // Navbar shadow on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.boxShadow = '0 4px 30px rgba(0,0,0,0.3)';
+            } else {
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Contact form handlers
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const mailtoBtn = document.getElementById('mailtoBtn');
+        const formStatus = document.getElementById('formStatus');
+
+        if (mailtoBtn) {
+            mailtoBtn.addEventListener('click', () => {
+                const name = document.getElementById('formName').value || 'Visitor';
+                const email = document.getElementById('formEmail').value || 'Not provided';
+                const subject = document.getElementById('formSubject').value || 'Portfolio Contact Inquiry';
+                const message = document.getElementById('formMessage').value || '';
+
+                const body = `Hi Roshan,\n\n${message}\n\n---\nFrom: ${name}\nEmail: ${email}`;
+                const mailtoUrl = `mailto:iamroshan1999@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                
+                window.location.href = mailtoUrl;
+            });
+        }
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', () => {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Sending...';
+                formStatus.style.display = 'block';
+                formStatus.style.background = 'rgba(167, 139, 250, 0.1)';
+                formStatus.style.border = '1px solid rgba(167, 139, 250, 0.3)';
+                formStatus.style.color = '#a78bfa';
+                formStatus.innerHTML = 'Sending your message...';
+            });
+        }
+
+        // Show success if redirected back after FormSubmit
+        if (window.location.search.includes('sent=1')) {
+            formStatus.style.display = 'block';
+            formStatus.style.background = 'rgba(52, 211, 153, 0.15)';
+            formStatus.style.border = '1px solid rgba(52, 211, 153, 0.4)';
+            formStatus.style.color = '#34d399';
+            formStatus.innerHTML = '✓ Message sent successfully! Thank you for reaching out.';
+            // Clean URL
+            window.history.replaceState({}, document.title, window.location.pathname);
+        }
     </script>
 </body>
-
 </html>
